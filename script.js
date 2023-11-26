@@ -28,6 +28,7 @@ const chords = {
     "Bm": ["B", "D", "F#"]
 };
 
+
 let currentChord = [];
 let clickedNotes = [];
 
@@ -47,16 +48,18 @@ function chooseRandomChord() {
 function keyPressed(note) {
     document.getElementById('clickedNoteDisplay').textContent = note;
 
-    if (currentChord.includes(note)) {
+    // Vérifier si la note appartient à l'accord et n'a pas été déjà cliquée
+    if (currentChord.includes(note) && !clickedNotes.includes(note)) {
+        clickedNotes.push(note);
         updateMessage(note + " fait partie de l'accord.");
-        if (!clickedNotes.includes(note)) {
-            clickedNotes.push(note);
-        }
-    } else {
+    } else if (!currentChord.includes(note)) {
         updateMessage(note + " ne fait pas partie de l'accord.");
+    } else {
+        updateMessage(note + " a déjà été sélectionnée.");
     }
 
-    if (clickedNotes.length >= currentChord.length) {
+    // Vérifier si l'accord est complet après trois clics
+    if (clickedNotes.length == 3) {
         checkIfChordComplete();
     }
 }
@@ -66,12 +69,13 @@ function updateMessage(message) {
 }
 
 function checkIfChordComplete() {
-    let correctNotes = currentChord.every(note => clickedNotes.includes(note));
+    let correctNotes = currentChord.every(note => clickedNotes.includes(note)) && clickedNotes.length == 3;
     if (correctNotes) {
-        updateMessage("Bravo ! Vous avez joué l'accord correctement.");
-        chooseRandomChord();
+        updateMessage("Bravo ! Rafraîchir la page pour un nouvel accord");
+        //chooseRandomChord();
     } else {
-        updateMessage("Ce n'est pas le bon accord. Essayez encore !");
+        updateMessage("Attention, vous n'avez pas donné les trois bonnes notes. Vous pouvez rafraîchir la page pour un nouvel accord");
         clickedNotes = [];
     }
 }
+
