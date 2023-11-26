@@ -45,38 +45,35 @@ function chooseRandomChord() {
     document.getElementById('messageDisplay').textContent = "Cliquez sur les notes de l'accord";
 }
 
-function keyPressed(note) {
+function keyPressed(noteText, soundId) {
+    document.getElementById('clickedNoteDisplay').textContent = noteText;
+    playNoteSound(soundId);
 
-    // Jouer le son de la note
-    playNoteSound(note);
+    // Logique pour vérifier l'appartenance à l'accord
+    if (currentChord.includes(noteText) && !clickedNotes.includes(noteText)) {
+        clickedNotes.push(noteText);
+        updateMessage(noteText + " fait partie de l'accord.");
+    } else if (!currentChord.includes(noteText)) {
+        updateMessage(noteText + " ne fait pas partie de l'accord.");
+    } else {
+        updateMessage(noteText + " a déjà été sélectionnée.");
+    }
 
-    // Reste de la fonction keyPressed...
+    if (clickedNotes.length == 3) {
+        checkIfChordComplete();
+    }
+}
 
 
-function playNoteSound(note) {
-    const audio = new Audio(`sounds/${note}.mp3`); // Assurez-vous que le chemin est correct
+function playNoteSound(soundId) {
+    const audio = new Audio(`sounds/${soundId}.mp3`);
     audio.play();
 }
 
 
     document.getElementById('clickedNoteDisplay').textContent = note;
 
-    // Vérifier si la note appartient à l'accord et n'a pas été déjà cliquée
-    if (currentChord.includes(note) && !clickedNotes.includes(note)) {
-        clickedNotes.push(note);
-        updateMessage(note + " fait partie de l'accord.");
-    } else if (!currentChord.includes(note)) {
-        updateMessage(note + " ne fait pas partie de l'accord.");
-    } else {
-        updateMessage(note + " a déjà été sélectionnée.");
-    }
-
-    // Vérifier si l'accord est complet après trois clics
-    if (clickedNotes.length == 3) {
-        checkIfChordComplete();
-    }
-}
-
+    
 function updateMessage(message) {
     document.getElementById('messageDisplay').textContent = message;
 }
