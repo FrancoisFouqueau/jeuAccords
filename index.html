@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Jeu de Piano</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+    <h2>Accord demandé : <span id="chordDisplay"></span></h2>
+    <h3>Note cliquée : <span id="clickedNoteDisplay">Aucune</span></h3>
+    <h3>Message : <span id="messageDisplay">Cliquez sur une touche</span></h3>
+    <div class="piano" id="piano">
+        <!-- Ensemble de touches A à C (octave 1) -->
+        <div class="key-set">
+            <button class="key white" onclick="keyPressed('A')">A</button>
+            <button class="key black" onclick="keyPressed('A#')">A#</button>
+        </div>
+        <div class="key-set">
+            <button class="key white" onclick="keyPressed('B')">B</button>
+        </div>
+        <div class="key-set">
+            <button class="key white" onclick="keyPressed('C')">C</button>
+            <button class="key black" onclick="keyPressed('C#')">C#</button>
+        </div>
+        <!-- Ensemble de touches D à F -->
+        <div class="key-set">
+            <button class="key white" onclick="keyPressed('D')">D</button>
+            <button class="key black" onclick="keyPressed('D#')">D#</button>
+        </div>
+        <div class="key-set">
+            <button class="key white" onclick="keyPressed('E')">E</button>
+        </div>
+        <div class="key-set">
+            <button class="key white" onclick="keyPressed('F')">F</button>
+            <button class="key black" onclick="keyPressed('F#')">F#</button>
+        </div>
+        <!-- Ensemble de touches G à B (octave 2) -->
+        <div class="key-set">
+            <button class="key white" onclick="keyPressed('G')">G</button>
+            <button class="key black" onclick="keyPressed('G#')">G#</button>
+        </div>
+        <div class="key-set">
+            <button class="key white" onclick="keyPressed('A')">A</button>
+            <button class="key black" onclick="keyPressed('A#')">A#</button>
+        </div>
+        <div class="key-set">
+            <button class="key white" onclick="keyPressed('B')">B</button>
+        </div>
+        <!-- Ensemble de touches C à E (octave 3) -->
+        <div class="key-set">
+            <button class="key white" onclick="keyPressed('C')">C</button>
+            <button class="key black" onclick="keyPressed('C#')">C#</button>
+        </div>
+        <div class="key-set">
+            <button class="key white" onclick="keyPressed('D')">D</button>
+            <button class="key black" onclick="keyPressed('D#')">D#</button>
+        </div>
+        <div class="key-set">
+            <button class="key white" onclick="keyPressed('E')">E</button>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
