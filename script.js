@@ -1,9 +1,33 @@
 const chords = {
+    // Accords majeurs
     "C": ["C", "E", "G"],
+    "C#": ["C#", "F", "G#"],
     "D": ["D", "F#", "A"],
+    "D#": ["D#", "G", "A#"],
     "E": ["E", "G#", "B"],
-    // Ajoutez d'autres accords ici si nécessaire
+    "F": ["F", "A", "C"],
+    "F#": ["F#", "A#", "C#"],
+    "G": ["G", "B", "D"],
+    "G#": ["G#", "C", "D#"],
+    "A": ["A", "C#", "E"],
+    "A#": ["A#", "D", "F"],
+    "B": ["B", "D#", "F#"],
+
+    // Accords mineurs
+    "Cm": ["C", "D#", "G"],
+    "C#m": ["C#", "E", "G#"],
+    "Dm": ["D", "F", "A"],
+    "D#m": ["D#", "F#", "A#"],
+    "Em": ["E", "G", "B"],
+    "Fm": ["F", "G#", "C"],
+    "F#m": ["F#", "A", "C#"],
+    "Gm": ["G", "A#", "D"],
+    "G#m": ["G#", "B", "D#"],
+    "Am": ["A", "C", "E"],
+    "A#m": ["A#", "C#", "F"],
+    "Bm": ["B", "D", "F#"]
 };
+
 
 let currentChord = [];
 let clickedNotes = [];
@@ -22,18 +46,33 @@ function chooseRandomChord() {
 }
 
 function keyPressed(note) {
+
+    // Jouer le son de la note
+    playNoteSound(note);
+
+    // Reste de la fonction keyPressed...
+
+
+function playNoteSound(note) {
+    const audio = new Audio(`sounds/${note}.mp3`); // Assurez-vous que le chemin est correct
+    audio.play();
+}
+
+
     document.getElementById('clickedNoteDisplay').textContent = note;
 
-    if (currentChord.includes(note)) {
+    // Vérifier si la note appartient à l'accord et n'a pas été déjà cliquée
+    if (currentChord.includes(note) && !clickedNotes.includes(note)) {
+        clickedNotes.push(note);
         updateMessage(note + " fait partie de l'accord.");
-        if (!clickedNotes.includes(note)) {
-            clickedNotes.push(note);
-        }
-    } else {
+    } else if (!currentChord.includes(note)) {
         updateMessage(note + " ne fait pas partie de l'accord.");
+    } else {
+        updateMessage(note + " a déjà été sélectionnée.");
     }
 
-    if (clickedNotes.length >= currentChord.length) {
+    // Vérifier si l'accord est complet après trois clics
+    if (clickedNotes.length == 3) {
         checkIfChordComplete();
     }
 }
@@ -43,12 +82,13 @@ function updateMessage(message) {
 }
 
 function checkIfChordComplete() {
-    let correctNotes = currentChord.every(note => clickedNotes.includes(note));
+    let correctNotes = currentChord.every(note => clickedNotes.includes(note)) && clickedNotes.length == 3;
     if (correctNotes) {
-        updateMessage("Bravo ! Vous avez joué l'accord correctement.");
-        chooseRandomChord();
+        updateMessage("Bravo ! Rafraîchir la page pour un nouvel accord");
+        //chooseRandomChord();
     } else {
-        updateMessage("Ce n'est pas le bon accord. Essayez encore !");
+        updateMessage("Attention, vous n'avez pas donné les trois bonnes notes. Vous pouvez rafraîchir la page pour un nouvel accord");
         clickedNotes = [];
     }
 }
+
