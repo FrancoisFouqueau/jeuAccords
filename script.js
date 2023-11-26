@@ -46,6 +46,19 @@ function chooseRandomChord() {
 }
 
 function keyPressed(note) {
+
+    // Jouer le son de la note
+    playNoteSound(note);
+
+    // Reste de la fonction keyPressed...
+
+
+function playNoteSound(note) {
+    const audio = new Audio(`sounds/${note}.mp3`); // Assurez-vous que le chemin est correct
+    audio.play();
+}
+
+
     document.getElementById('clickedNoteDisplay').textContent = note;
 
     // Vérifier si la note appartient à l'accord et n'a pas été déjà cliquée
