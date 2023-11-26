@@ -1,8 +1,31 @@
 const chords = {
+    // Accords majeurs
     "C": ["C", "E", "G"],
+    "C#": ["C#", "F", "G#"],
     "D": ["D", "F#", "A"],
+    "D#": ["D#", "G", "A#"],
     "E": ["E", "G#", "B"],
-    // Ajoutez d'autres accords ici si nécessaire
+    "F": ["F", "A", "C"],
+    "F#": ["F#", "A#", "C#"],
+    "G": ["G", "B", "D"],
+    "G#": ["G#", "C", "D#"],
+    "A": ["A", "C#", "E"],
+    "A#": ["A#", "D", "F"],
+    "B": ["B", "D#", "F#"],
+
+    // Accords mineurs
+    "Cm": ["C", "Eb", "G"],
+    "C#m": ["C#", "E", "G#"],
+    "Dm": ["D", "F", "A"],
+    "D#m": ["D#", "F#", "A#"],
+    "Em": ["E", "G", "B"],
+    "Fm": ["F", "Ab", "C"],
+    "F#m": ["F#", "A", "C#"],
+    "Gm": ["G", "Bb", "D"],
+    "G#m": ["G#", "B", "D#"],
+    "Am": ["A", "C", "E"],
+    "A#m": ["A#", "C#", "F"],
+    "Bm": ["B", "D", "F#"]
 };
 
 let currentChord = [];
