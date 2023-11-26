@@ -14,7 +14,7 @@ const chords = {
     "B": ["B", "D#", "F#"],
 
     // Accords mineurs
-    "Cm": ["C", "Eb", "G"],
+    "Cm": ["C", "D#", "G"],
     "C#m": ["C#", "E", "G#"],
     "Dm": ["D", "F", "A"],
     "D#m": ["D#", "F#", "A#"],
